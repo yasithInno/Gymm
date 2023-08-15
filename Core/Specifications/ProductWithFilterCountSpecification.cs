@@ -1,0 +1,20 @@
+﻿using GYMM.Core.Entities;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace GYMM.Core.Specifications
+{
+    public class ProductWithFilterCountSpecification : BaseSpecification<Products>
+    {
+        public ProductWithFilterCountSpecification(ProductSpecPrams productSpecPrams) :
+            base      
+            (x =>
+            (string.IsNullOrEmpty(productSpecPrams.Search) || x.Name == productSpecPrams.Search) &&
+            (!productSpecPrams.brandId.HasValue || x.ProductBrandId == productSpecPrams.brandId)
+             && (!productSpecPrams.typeId.HasValue || x.ProductTypeId == productSpecPrams.typeId))
+        {
+
+        }
+    }
+}
